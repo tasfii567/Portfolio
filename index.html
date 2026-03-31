@@ -341,17 +341,24 @@
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="available-badge">
-      <span class="available-dot"></span>
-      Available for opportunities
-    </div>
+   <div class="available-badge" style="gap:12px;">
+  <img src="Tasfia_Islam.jpg" alt="Tasfia" style="
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--teal);
+  ">
+  <span class="available-dot"></span>
+  Available for opportunities
+</div>
     <h1 class="hero-title">Hi, I'm <span class="teal">Tasfia Islam</span></h1>
     <p class="hero-subtitle">
       I am a <span class="typed" id="typed-text"></span><span class="typed-cursor">|</span>
     </p>
     <p class="hero-desc">
-      I build responsive web applications and software solutions using modern technologies.
-      Passionate about clean code, problem solving, and innovative digital experiences.
+      I build responsive web applications,test them and offer software solutions using modern technologies.
+      I am passionate about clean code, problem solving, and innovative digital experiences.
     </p>
     <div class="hero-btns">
       <a href="#projects" class="btn-teal">
@@ -433,6 +440,41 @@
     </div>
   </div>
 </section>
+<!-- ══════════ MY JOURNEY ══════════ -->
+<section id="journey" class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>My <span class="teal">Journey</span></h2>
+      <p>How I got here</p>
+    </div>
+
+    <div class="reveal" style="max-width:800px;margin:auto;">
+      <div style="border-left:2px solid var(--teal); padding-left:20px;">
+
+        <div style="margin-bottom:30px;">
+          <h3 style="color:var(--white);">🎓 Started CSE</h3>
+          <p style="color:var(--muted);">Began my journey in Computer Science at IIUC.</p>
+        </div>
+
+        <div style="margin-bottom:30px;">
+          <h3 style="color:var(--white);">💻 Built Projects</h3>
+          <p style="color:var(--muted);">Worked on real-world apps like AI mail assistant & trackers.</p>
+        </div>
+
+        <div style="margin-bottom:30px;">
+          <h3 style="color:var(--white);">🧪 Explored QA & AI</h3>
+          <p style="color:var(--muted);">Dived into testing, automation, and intelligent systems.</p>
+        </div>
+
+        <div>
+          <h3 style="color:var(--white);">🚀 Career Focus</h3>
+          <p style="color:var(--muted);">Now aiming for impactful roles in tech & data fields.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════ SKILLS ══════════ -->
 <section id="skills" class="section">
@@ -444,6 +486,9 @@
     </div>
 
     <div class="skills-icon-grid reveal">
+      <div class="reveal" style="margin-top:60px;text-align:center;">
+  <canvas id="skillsCanvas" width="600" height="400"></canvas>
+</div>
 
       <div class="skill-icon-card">
         <svg class="skill-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -718,16 +763,6 @@
           </div>
         </a>
       </div>
-
-      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <input class="form-input" type="text" name="name" placeholder="Your Name" required />
-        <input class="form-input" type="email" name="email" placeholder="Your Email" required />
-        <textarea class="form-input" name="message" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn-send-teal">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Send Message
-        </button>
-      </form>
     </div>
   </div>
 </section>
@@ -776,6 +811,42 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const canvas = document.getElementById("skillsCanvas");
+const ctx = canvas.getContext("2d");
+
+const skills = [
+  {x:100,y:100,label:"Python"},
+  {x:300,y:80,label:"JS"},
+  {x:500,y:150,label:"React"},
+  {x:200,y:250,label:"AI"},
+  {x:400,y:300,label:"SQL"}
+];
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  skills.forEach((s,i)=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,5,0,Math.PI*2);
+    ctx.fillStyle="#2dd4bf";
+    ctx.fill();
+
+    ctx.fillStyle="#fff";
+    ctx.fillText(s.label,s.x+8,s.y+4);
+
+    skills.forEach((t,j)=>{
+      if(i!==j){
+        ctx.beginPath();
+        ctx.moveTo(s.x,s.y);
+        ctx.lineTo(t.x,t.y);
+        ctx.strokeStyle="rgba(45,212,191,0.2)";
+        ctx.stroke();
+      }
+    });
+  });
+}
+
+draw();
 </script>
 </body>
 </html>
